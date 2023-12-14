@@ -36,9 +36,7 @@ function getWeather(city) {
         weatherToday(data.list[0]);
         showFive(data.coord.lat, data.coord.lon);
     })
-
-    //SEE NOTES IN UNCATEGORIZED FOLDER (in-class notetaking). relevant function structure
-}
+};
 
 //params from getweather
 function weatherToday(currentCity) {
