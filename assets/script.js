@@ -26,7 +26,7 @@ function getWeather(city) {
     
     //SAVE city searched to search history list
 
-    var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&APPID=fb19d043c4c8d10594e04cf27975c0d5`
+    var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=fb19d043c4c8d10594e04cf27975c0d5`
     //fetch (async)
     fetch(citySearched).then(function (response) {
         console.log(response.json)
