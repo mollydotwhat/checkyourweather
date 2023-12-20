@@ -5,5 +5,6 @@ A demonstration of the use of external API--in this case, https://openweathermap
 
 
 ## Preview
+![img](./assets/firstpreview.jpg)
 
 Deployed [here](https://mollydotwhat.github.io/checkyourweather/)
