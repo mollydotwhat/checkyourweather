@@ -6,4 +6,4 @@ A demonstration of the use of external API--in this case, https://openweathermap
 
 ## Preview
 
-Deployed [here](link)
+Deployed [here](https://mollydotwhat.github.io/checkyourweather/)
