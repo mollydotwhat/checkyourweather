@@ -21,7 +21,7 @@
     <main>
 
         <section id="searchFormOne" class="container-sm">
-            <h5>Find the weather for a city</h5>
+            <h5>Find current weather for a city</h5>
             <form>
                 <div class="col">
                     <label for="cityField" class="form-label">City:</label>
@@ -30,12 +30,24 @@
                 </div>
             </form>
         </section>
+        <section id="searchForm5Day" class="container-sm">
+            <h5>Find the five-day forecast for a city</h5>
+            <form>
+                <div class="col">
+                    <label for="cityLat" class="form-label">Latitude:</label>
+                    <input id="cityLat" class="form-control" type="textarea" placeholder="enter city name" />
+                    <label for="cityLon" class="form-label">Longitude:</label>
+                    <input id="cityLon" class="form-control" type="textarea" placeholder="enter city name" />
+                    <button class="btn btn-primary" id="submitBtn5Day">Submit</button>
+                </div>
+            </form>
+        </section>
 
-        <section id="weatherToday" class="container-md">generate something weather today</section>
+        <section id="weatherToday" class="container-md">generate card weather today</section>
 
-        <section id="weatherFiveDay" class="container-md">generate something weather five day</section>
+        <section id="weatherFiveDay" class="container-md">generate cards weather five day</section>
 
-        <section id="searchHistory" class="container-sm">generate something search history</section>
+        <section id="searchHistory" class="container-sm">generate list search history</section>
 
     </main>
 

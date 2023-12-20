@@ -2,26 +2,28 @@
 var searchFormOne = $("#searchFormOneOne");
 var cityInput = $("#cityField")
 var searchBtnOne = $("#submitBtnOne")
+var searchBtn5Day = $("#searchBtn5Day")
+var latInput = $('#cityLat')
+var lonInput = $('#cityLon')
 var weatherToday = $("#weatherToday");
 var weatherFiveDay = $("#weatherFiveDay");
 var searchHistory = $("#searchHistory");
 
+
 // will be generating (most) page contents programatically
 
 // search function (get user input from form field)
-function search() {
+function searchOne() {
     // parse input, send to get weather
-    var cityField = document.getElementById("cityField");
 
     var parsedCity = cityField.val().trim();
     getWeather(parsedCity);
 
 };
-searchBtnOne.on("click", search);
+searchBtnOne.on("click", searchOne);
 
 // get weather api
 function getWeather(city) {
-    // turn city into lat/lon?
     // call w/key EXAMPLE: api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=fb19d043c4c8d10594e04cf27975c0d5
     // replace London,uk programatically
     
@@ -43,9 +45,16 @@ function getWeather(city) {
     })
 };
 
+function search5Day () {
+    var lat = latInput.val();
+    var lon = lonInput.val();
+    showFive(lat, lon);
+};
+searchBtn5Day.on("click", search5Day);
+
 //params from getweather
 function weatherToday(currentCity) {
-    //build today section w/info from search
+    //build today section elements w/info from search
     var cityName = currentCity.name;
     var currentDate;
     var currentTemp;
