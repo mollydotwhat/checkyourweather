@@ -1,7 +1,7 @@
 // variables for divs and form fields
-var searchForm = $("#searchForm");
-var cityField = $("#cityField")
-var searchBtn = $("#submitBtn")
+var searchFormOne = $("#searchFormOneOne");
+var cityInput = $("#cityField")
+var searchBtnOne = $("#submitBtnOne")
 var weatherToday = $("#weatherToday");
 var weatherFiveDay = $("#weatherFiveDay");
 var searchHistory = $("#searchHistory");
@@ -11,12 +11,13 @@ var searchHistory = $("#searchHistory");
 // search function (get user input from form field)
 function search() {
     // parse input, send to get weather
-    // var inputSent = ;
-    // var parsedCity = `http://api.openweathermap.org/geo/1.0/direct?q=${inputSent}&limit=5&appid={API key}`;
+    var cityField = document.getElementById("cityField");
+
     var parsedCity = cityField.val().trim();
-    getWeather(parsedCity)
+    getWeather(parsedCity);
+
 };
-searchBtn.on("click", search);
+searchBtnOne.on("click", search);
 
 // get weather api
 function getWeather(city) {
@@ -34,7 +35,11 @@ function getWeather(city) {
     }).then(function (data){
         // first day in list = today
         weatherToday(data.list[0]);
-        showFive(data.coord.lat, data.coord.lon);
+        // temperature
+        // humidity
+        // winds
+
+        //showFive(data.coord.lat, data.coord.lon);
     })
 };
 
@@ -51,6 +56,7 @@ function weatherToday(currentCity) {
 //params from getweather
 function showFive(lat, lon) {
     //build 5-day section w/info from search
+    // get lat & lon AS INPUT!!! No fussy parsing city name to exact location.
     var getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=fb19d043c4c8d10594e04cf27975c0d5`
 
     fetch(getFiveDay).then(function (response){
