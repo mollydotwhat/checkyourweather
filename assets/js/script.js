@@ -8,7 +8,7 @@ var searchBtn5Day = document.getElementById("searchBtn5Day");
 var weatherToday = document.getElementById("weatherToday");
 var weatherFiveDay = document.getElementById("weatherFiveDay");
 var searchHistory = document.getElementById("searchHistory");
-var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
+var keyCode = "b28d843808a4e22cd1fffa0efffc9697";
 
 // will be generating (most) page contents programatically
 
@@ -81,6 +81,13 @@ function buildToday (cityInfo) {
 
 function getForecast5 (lat, lon) {
     var cityForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${keyCode}`
+
+    fetch(cityForecast).then(function (response){
+        return response.json
+    }).then(function (data){
+       console.log(data)
+
+    })
 }
 
 function build5Day (cityInfo) {
@@ -90,34 +97,8 @@ function build5Day (cityInfo) {
 
 //params from getWeatherNow
 // maybe consolidate this into other function?
-function weatherToday(currentCity) {
-    //build today section elements w/info from search
-    var cityName = currentCity.name;
-    var currentDate;
-    var currentTemp;
-    var currentWind;
-    var currentHumidity;
-}
-
-//params from getWeatherNow
-function showFive(lat, lon) {
-    //build 5-day section w/info from search
-    // get lat & lon AS INPUT!!! No fussy parsing city name to exact location.
-    var getFiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${keyCode}`
-
-    fetch(getFiveDay).then(function (response){
-        return response.json
-    }).then(function (data){
-        var cityName = data.name;
-        //header w/city name
-        // loop through data list by index (less than 5 because array), generating card w/each date, temp, wind, humidity
 
 
-    })
-    // card per day
-    
-
-}
 
 
 
