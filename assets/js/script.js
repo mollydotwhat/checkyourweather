@@ -15,32 +15,34 @@ var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 // search function (get user input from form field)
 function getLatLon () {
     event.preventDefault();
-    var nameCity = cityInput.val().trim();
-    var theseCoords = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
+    var nameCity  = cityInput.val().trim();
+    var findCoords = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
 
-    fetch(query)
+    fetch(findCoords)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-
+        return cityCoords = [data[0].lat, data[0].lon]
     })
-
+    return cityCoords;
 };
+ function searchOne () {
+    getWeather();
+    
+ };
 
-function getCityObject() {
-
-}
 searchBtnOne.on("click", searchOne);
 
 // get weather api
-function getWeather(city) {
+function getWeather() {
     event.preventDefault();
+    var cityLat = getLatLon[0];
+    var cityLon = getLatLon[1];
 
+    var citySearched = `https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&appid=${keyCode}`
 
-    var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${keyCode}`
-
-    fetch(query)
+    fetch(citySearched)
     .then(function (response) {
       return response.json();
     })
