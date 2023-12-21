@@ -15,7 +15,7 @@ var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 // search function (get user input from form field)
 function searchOne() {
     // parse input, send to get weather
-
+    event.preventDefault();
     var parsedCity = cityField.val().trim();
     getWeather(parsedCity);
 
@@ -24,7 +24,7 @@ searchBtnOne.on("click", searchOne);
 
 // get weather api
 function getWeather(city) {
-
+    event.preventDefault();
     var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${keyCode}`
     var getLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${keyCode}`
     var cityLat = getLatLon[1].lat;
