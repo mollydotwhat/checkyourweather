@@ -25,9 +25,10 @@ searchBtnOne.on("click", searchOne);
 // get weather api
 function getWeather(city) {
 
-    //SAVE city searched to search history list
-
     var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${keyCode}`
+    var getLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${keyCode}`
+    var cityLat = getLatLon[1].lat;
+    var cityLon = getLatLon[1].lon;
     //fetch (async)f
     fetch(citySearched).then(function (response) {
         console.log(response.json)
