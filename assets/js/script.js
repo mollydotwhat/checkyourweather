@@ -96,9 +96,11 @@ function build5Day(data) {
 
     // for loop pulls up forecast at 9am, once a day
     for (i = 4;  i < data.list.length ; i+= 8 ) {
+        console.log(`Array index: ` + i)
         dateText = data.list[i].dt_txt
         var formatDate = dayjs.unix(data.list[i].dt).format('YYYY-MM-DD')
         console.log(`forecast for 9 AM on ` + formatDate)
+        console.log(`feels like: ` + data.list[i].main.feels_like)
 
     }
 }
