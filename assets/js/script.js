@@ -8,7 +8,7 @@ var lonInput = $('#cityLon')
 var weatherToday = $("#weatherToday");
 var weatherFiveDay = $("#weatherFiveDay");
 var searchHistory = $("#searchHistory");
-
+var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 
 // will be generating (most) page contents programatically
 
@@ -24,13 +24,11 @@ searchBtnOne.on("click", searchOne);
 
 // get weather api
 function getWeather(city) {
-    // call w/key EXAMPLE: api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=fb19d043c4c8d10594e04cf27975c0d5
-    // replace London,uk programatically
-    
+
     //SAVE city searched to search history list
 
-    var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=fb19d043c4c8d10594e04cf27975c0d5`
-    //fetch (async)
+    var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${keyCode}`
+    //fetch (async)f
     fetch(citySearched).then(function (response) {
         console.log(response.json)
         return response.json;
