@@ -2,9 +2,6 @@
 var searchFormOne = document.getElementById("searchFormOne");
 var cityInput = document.getElementById("cityField");
 var searchBtnOne = document.getElementById("submitBtnOne");
-var searchBtn5Day = document.getElementById("searchBtn5Day");
-// var latInput = $('#cityLat')
-// var lonInput = $('#cityLon')
 var weatherToday = document.getElementById("weatherToday");
 var weatherFiveDay = document.getElementById("weatherFiveDay");
 var searchHistory = document.getElementById("searchHistory");
@@ -97,12 +94,16 @@ function build5Day(data) {
     // now to get data keys
     console.log(data)
 
-    //for loop! or while. should double check.
+    // for loop pulls up forecast at 9am, once a day
+    for (i = 4;  i < data.list.length ; i+= 8 ) {
+        dateText = data.list[i].dt_txt
+        var formatDate = dayjs.unix(data.list[i].dt).format('YYYY-MM-DD')
+        console.log(`forecast for 9 AM on ` + formatDate)
+
+    }
 }
 
 
-//params from getWeatherNow
-// maybe consolidate this into other function?
 
 
 
