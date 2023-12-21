@@ -1,7 +1,7 @@
 // variables for divs and form fields
 var searchFormOne = document.getElementById("searchFormOneOne");
 var cityInput = document.getElementById("cityField");
-var searchBtnOne = document.getElementById("#submitBtnOne");
+var searchBtnOne = document.getElementById("submitBtnOne");
 var searchBtn5Day = document.getElementById("searchBtn5Day");
 // var latInput = $('#cityLat')
 // var lonInput = $('#cityLon')
@@ -14,35 +14,54 @@ var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 
 // search function (get user input from form field)
 function getLatLon () {
-    // parse input, send to get weather
     event.preventDefault();
     var nameCity = cityInput.val().trim();
-    var getLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
+    var theseCoords = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
 
+    fetch(query)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+
+    })
 
 };
+
+function getCityObject() {
+
+}
 searchBtnOne.on("click", searchOne);
 
 // get weather api
 function getWeather(city) {
     event.preventDefault();
+
+
     var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${keyCode}`
 
-    var cityLat = getLatLon[1].lat;
-    var cityLon = getLatLon[1].lon;
-    //fetch (async)f
-    fetch(citySearched).then(function (response) {
-        console.log(response.json)
-        return response.json;
-    }).then(function (data){
-        // first day in list = today
-        weatherToday(data.list[0]);
-        // temperature
-        // humidity
-        // winds
-
-        //showFive(data.coord.lat, data.coord.lon);
+    fetch(query)
+    .then(function (response) {
+      return response.json();
     })
+    .then(function (data) {
+        
+    })
+    // var cityLat = getLatLon[1].lat;
+    // var cityLon = getLatLon[1].lon;
+    //fetch (async)f
+    // fetch(citySearched).then(function (response) {
+    //     console.log(response.json)
+    //     return response.json;
+    // }).then(function (data){
+    //     // first day in list = today
+    //     weatherToday(data.list[0]);
+    //     // temperature
+    //     // humidity
+    //     // winds
+
+    //     //showFive(data.coord.lat, data.coord.lon);
+    // })
 };
 
 function search5Day () {
