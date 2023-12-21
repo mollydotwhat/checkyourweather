@@ -8,7 +8,8 @@ var searchBtn5Day = document.getElementById("searchBtn5Day");
 var weatherToday = document.getElementById("weatherToday");
 var weatherFiveDay = document.getElementById("weatherFiveDay");
 var searchHistory = document.getElementById("searchHistory");
-var keyCode = "b28d843808a4e22cd1fffa0efffc9697";
+// var keyCode = "b28d843808a4e22cd1fffa0efffc9697";
+var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 
 // will be generating (most) page contents programatically
 
