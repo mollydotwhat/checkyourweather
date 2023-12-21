@@ -13,9 +13,9 @@ var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 // will be generating (most) page contents programatically
 
 // search function (get user input from form field)
-function getLatLon () {
+function getLatLon (nameCity) {
     event.preventDefault();
-    var nameCity  = cityInput.val().trim();
+  
     var findCoords = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
 
     fetch(findCoords)
@@ -23,13 +23,14 @@ function getLatLon () {
       return response.json();
     })
     .then(function (data) {
+        // select & return location coords from object returned
         return cityCoords = [data[0].lat, data[0].lon]
     })
+    // JUST in case because scope is difficult sometimes
     return cityCoords;
 };
  function searchOne () {
-    getWeather();
-    
+   getWeather();
  };
 
 searchBtnOne.on("click", searchOne);
@@ -37,9 +38,14 @@ searchBtnOne.on("click", searchOne);
 // get weather api
 function getWeather() {
     event.preventDefault();
-    var cityLat = getLatLon[0];
-    var cityLon = getLatLon[1];
-
+    let cityName = cityInput.val().trim();
+    console.log(cityName);
+    var coordSet = getLatLon(cityName);
+    var cityLat = coordSet[0];
+    var cityLon = coordSet[1];
+    console.log(cityLat);
+    console.log(cityLon);
+    // using coords returned from getLatLon to search weather app. I might need more async syntax for this, but trying it this way first.
     var citySearched = `https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&appid=${keyCode}`
 
     fetch(citySearched)
@@ -49,31 +55,18 @@ function getWeather() {
     .then(function (data) {
         
     })
-    // var cityLat = getLatLon[1].lat;
-    // var cityLon = getLatLon[1].lon;
-    //fetch (async)f
-    // fetch(citySearched).then(function (response) {
-    //     console.log(response.json)
-    //     return response.json;
-    // }).then(function (data){
-    //     // first day in list = today
-    //     weatherToday(data.list[0]);
-    //     // temperature
-    //     // humidity
-    //     // winds
 
-    //     //showFive(data.coord.lat, data.coord.lon);
-    // })
 };
+function buildToday () {
 
-function search5Day () {
-    var lat = latInput.val();
-    var lon = lonInput.val();
-    showFive(lat, lon);
 };
-searchBtn5Day.on("click", search5Day);
+function build5Day () {
+
+}
+
 
 //params from getweather
+// maybe consolidate this into other function?
 function weatherToday(currentCity) {
     //build today section elements w/info from search
     var cityName = currentCity.name;
