@@ -1,23 +1,24 @@
 // variables for divs and form fields
-var searchFormOne = $("#searchFormOneOne");
-var cityInput = $("#cityField")
-var searchBtnOne = $("#submitBtnOne")
-var searchBtn5Day = $("#searchBtn5Day")
-var latInput = $('#cityLat')
-var lonInput = $('#cityLon')
-var weatherToday = $("#weatherToday");
-var weatherFiveDay = $("#weatherFiveDay");
-var searchHistory = $("#searchHistory");
+var searchFormOne = document.getElementById("searchFormOneOne");
+var cityInput = document.getElementById("cityField");
+var searchBtnOne = document.getElementById("#submitBtnOne");
+var searchBtn5Day = document.getElementById("searchBtn5Day");
+// var latInput = $('#cityLat')
+// var lonInput = $('#cityLon')
+var weatherToday = document.getElementById("weatherToday");
+var weatherFiveDay = document.getElementById("weatherFiveDay");
+var searchHistory = document.getElementById("searchHistory");
 var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 
 // will be generating (most) page contents programatically
 
 // search function (get user input from form field)
-function searchOne() {
+function getLatLon () {
     // parse input, send to get weather
     event.preventDefault();
-    var parsedCity = cityField.val().trim();
-    getWeather(parsedCity);
+    var nameCity = cityInput.val().trim();
+    var getLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
+
 
 };
 searchBtnOne.on("click", searchOne);
@@ -26,7 +27,7 @@ searchBtnOne.on("click", searchOne);
 function getWeather(city) {
     event.preventDefault();
     var citySearched = `api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${keyCode}`
-    var getLatLon = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${keyCode}`
+
     var cityLat = getLatLon[1].lat;
     var cityLon = getLatLon[1].lon;
     //fetch (async)f
