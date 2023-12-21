@@ -14,29 +14,29 @@ var keyCode = "fb19d043c4c8d10594e04cf27975c0d5";
 // will be generating (most) page contents programatically
 
 // search function (get user input from form field)
-function getLatLon (nameCity) {
+function getLatLon(nameCity) {
     event.preventDefault();
-    
+
     var findCoords = `http://api.openweathermap.org/geo/1.0/direct?q=${nameCity}&limit=5&appid=${keyCode}`
 
     fetch(findCoords)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-        console.log(`finding coordinates for: ` + data[0].name)
-        console.log(data)
-        getWeatherNow(data[0].lat, data[0].lon);
-        getForecast5(data[0].lat, data[0].lon);
-    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(`finding coordinates for: ` + data[0].name)
+            console.log(data)
+            getWeatherNow(data[0].lat, data[0].lon);
+            getForecast5(data[0].lat, data[0].lon);
+        })
 
 };
 
- function searchOne () {
+function searchOne() {
     var cityName = cityInput.value;
     getLatLon(cityName);
-//    getWeatherNow();
- };
+    //    getWeatherNow();
+};
 
 searchBtnOne.addEventListener("click", searchOne);
 
@@ -47,20 +47,20 @@ function getWeatherNow(lat, lon) {
     var citySearched = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${keyCode}`
 
     fetch(citySearched)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-        // console.log(data)
-        console.log(`city name: ` + JSON.stringify(data.name))
-        console.log(`weather search result: ` + JSON.stringify(data))
-        buildToday(data)
-        // build5Day(data)
-    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            // console.log(data)
+            console.log(`city name: ` + JSON.stringify(data.name))
+            console.log(`weather search result: ` + JSON.stringify(data))
+            buildToday(data)
+            // build5Day(data)
+        })
 
 };
 
-function buildToday (cityInfo) {
+function buildToday(cityInfo) {
     // var weatherDesc = JSON.stringify(cityInfo.weather.description);
     // console.log(weatherDesc) nope, not getting it. leave it for later.
 
@@ -80,19 +80,24 @@ function buildToday (cityInfo) {
 
 };
 
-function getForecast5 (lat, lon) {
+function getForecast5(lat, lon) {
     var cityForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${keyCode}`
 
-    fetch(cityForecast).then(function (response){
-        return response.json
-    }).then(function (data){
-       console.log(data)
-
+    fetch(cityForecast).then(function (response) {
+        console.log("getting forecast")
+        return response.json();
+    }).then(function (data) {
+        build5Day(data)
     })
 }
 
-function build5Day (cityInfo) {
+function build5Day(data) {
+    cityName = data.city.name;
+    console.log(`forecast: ` + cityName)
+    // now to get data keys
+    console.log(data)
 
+    //for loop! or while. should double check.
 }
 
 
