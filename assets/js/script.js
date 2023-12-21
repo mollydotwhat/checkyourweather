@@ -25,9 +25,8 @@ function getLatLon (nameCity) {
     .then(function (data) {
         console.log(`finding coordinates for: ` + data[0].name)
         console.log(data)
-
-        getWeather(data[0].lat, data[0].lon);
-
+        getWeatherNow(data[0].lat, data[0].lon);
+        getForecast5(data[0].lat, data[0].lon);
     })
 
 };
@@ -35,13 +34,13 @@ function getLatLon (nameCity) {
  function searchOne () {
     var cityName = cityInput.value;
     getLatLon(cityName);
-//    getWeather();
+//    getWeatherNow();
  };
 
 searchBtnOne.addEventListener("click", searchOne);
 
 // get weather api
-function getWeather(lat, lon) {
+function getWeatherNow(lat, lon) {
 
     // using coords returned from getLatLon to search weather app. I might need more async syntax for this, but trying it this way first.
     var citySearched = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${keyCode}`
@@ -54,27 +53,42 @@ function getWeather(lat, lon) {
         // console.log(data)
         console.log(`city name: ` + JSON.stringify(data.name))
         console.log(`weather search result: ` + JSON.stringify(data))
-        // buildToday(data)
+        buildToday(data)
         // build5Day(data)
-
-
     })
 
 };
 
 function buildToday (cityInfo) {
-    let todayTemp = cityInfo.main.temp;
-    let todayHumidity = cityInfo.main.humidity;
-    let todayWinds = cityInfo.main.wind;
+    // var weatherDesc = JSON.stringify(cityInfo.weather.description);
+    // console.log(weatherDesc) nope, not getting it. leave it for later.
+
+    // var weatherIcon;
+    var currentTemp = cityInfo.main.temp;
+    console.log(`current temp:` + currentTemp);
+    var feelsLike = cityInfo.main.feels_like;
+    console.log(`feels like ${feelsLike}`);
+    var minTemp = cityInfo.main.temp_min;
+    console.log(`minimum temp: ${minTemp}`);
+    var maxTemp = cityInfo.main.temp_max;
+    console.log(`max temp: ${maxTemp}`);
+    var todayHumidity = cityInfo.main.humidity;
+    console.log(`humidity: ${todayHumidity}`)
+    var todayWinds = cityInfo.wind;
+    console.log(`wind speed: ${todayWinds.speed}`)
 
 };
+
+function getForecast5 (lat, lon) {
+    var cityForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${keyCode}`
+}
 
 function build5Day (cityInfo) {
 
 }
 
 
-//params from getweather
+//params from getWeatherNow
 // maybe consolidate this into other function?
 function weatherToday(currentCity) {
     //build today section elements w/info from search
@@ -85,7 +99,7 @@ function weatherToday(currentCity) {
     var currentHumidity;
 }
 
-//params from getweather
+//params from getWeatherNow
 function showFive(lat, lon) {
     //build 5-day section w/info from search
     // get lat & lon AS INPUT!!! No fussy parsing city name to exact location.
