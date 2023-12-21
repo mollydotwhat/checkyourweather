@@ -1,5 +1,5 @@
 // variables for divs and form fields
-var searchFormOne = document.getElementById("searchFormOneOne");
+var searchFormOne = document.getElementById("searchFormOne");
 var cityInput = document.getElementById("cityField");
 var searchBtnOne = document.getElementById("submitBtnOne");
 var searchBtn5Day = document.getElementById("searchBtn5Day");
@@ -29,6 +29,7 @@ function getLatLon (nameCity) {
     // JUST in case because scope is difficult sometimes
     return cityCoords;
 };
+
  function searchOne () {
    getWeather();
  };
@@ -53,14 +54,21 @@ function getWeather() {
       return response.json();
     })
     .then(function (data) {
-        
+        console.log(data)
+        // buildToday(data);
+        // build5Day(data);
     })
 
 };
-function buildToday () {
+
+function buildToday (cityInfo) {
+    let todayTemp = cityInfo.main.temp;
+    let todayHumidity = cityInfo.main.humidity;
+    let todayWinds = cityInfo.main.wind;
 
 };
-function build5Day () {
+
+function build5Day (cityInfo) {
 
 }
 
