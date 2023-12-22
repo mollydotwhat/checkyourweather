@@ -108,14 +108,16 @@ function build5Day(data) {
     for (i = 4;  i < data.list.length ; i+= 8 ) {
         console.log(`Array index: ` + i)
         dateText = data.list[i].dt_txt
-        var formatDate = dayjs.unix(data.list[i].dt).format('dddd MM-DD')
+        var formatDate = dayjs.unix(data.list[i].dt).format('dddd, MM/DD')
         console.log(`forecast for 9 AM on ` + formatDate)
         console.log(`feels like: ` + data.list[i].main.feels_like)
         let outFeels = data.list[i].main.feels_like;
-        let currTemp = data.list[i].main.temp
+        let currTemp = data.list[i].main.temp;
+        let weathIcon = data.list[i].weather[0].icon;
+        let descFive = data.list[i].weather[0].description;
         let oneCard= `<p>
-        <h5>On ${formatDate}</h5>
-        <div>Currently ${currTemp}°F, but it feels like ${outFeels}°F</div>
+        <h5>${formatDate} <img id="icon" src='https://openweathermap.org/img/w/${weathIcon}.png' /></h5>
+        <div>The 9AM forecast is ${currTemp}°F and ${descFive} but it'll feel like ${outFeels}°F</div>
         </p>`;
         document.getElementById('weatherFiveDay').innerHTML += oneCard
 
