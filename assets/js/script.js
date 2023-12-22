@@ -58,10 +58,9 @@ function getWeatherNow(lat, lon) {
 };
 
 function buildToday(cityInfo) {
-    // var weatherDesc = JSON.stringify(cityInfo.weather.description);
-    // console.log(weatherDesc) nope, not getting it. leave it for later.
-
-    // var weatherIcon;
+    var weatherDesc = cityInfo.weather[0].description;
+    console.log(weatherDesc)
+    var weatherIcon = cityInfo.weather[0].icon ;
     var currentTemp = cityInfo.main.temp;
     console.log(`current temp:` + currentTemp);
     var feelsLike = cityInfo.main.feels_like;
@@ -75,7 +74,16 @@ function buildToday(cityInfo) {
     var todayWinds = cityInfo.wind;
     console.log(`wind speed: ${todayWinds.speed}`)
 
-    // document.getElementById('weatherToday')+=
+    var todayCard = `<center>
+    <h4>${dayjs().format('dddd, MMMM DD')} in ${cityInfo.name}:</h4>
+    <div><img id="icon" src='https://openweathermap.org/img/w/${weatherIcon}.png' />: ${weatherDesc}</div>
+    <div>Current temperature is ${currentTemp}</div>
+    It feels like ${feelsLike}</p>
+    </center>`
+
+    document.getElementById('weatherToday').innerHTML+= todayCard;
+    
+
 
 };
 
@@ -100,9 +108,16 @@ function build5Day(data) {
     for (i = 4;  i < data.list.length ; i+= 8 ) {
         console.log(`Array index: ` + i)
         dateText = data.list[i].dt_txt
-        var formatDate = dayjs.unix(data.list[i].dt).format('YYYY-MM-DD')
+        var formatDate = dayjs.unix(data.list[i].dt).format('dddd MM-DD')
         console.log(`forecast for 9 AM on ` + formatDate)
         console.log(`feels like: ` + data.list[i].main.feels_like)
+        let outFeels = data.list[i].main.feels_like;
+        let currTemp = data.list[i].main.temp
+        let oneCard= `<p>
+        <h5>On ${formatDate}</h5>
+        <div>Currently ${currTemp}°F, but it feels like ${outFeels}°F</div>
+        </p>`;
+        document.getElementById('weatherFiveDay').innerHTML += oneCard
 
     }
 }
