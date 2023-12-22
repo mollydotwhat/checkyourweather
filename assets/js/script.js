@@ -75,6 +75,8 @@ function buildToday(cityInfo) {
     var todayWinds = cityInfo.wind;
     console.log(`wind speed: ${todayWinds.speed}`)
 
+    // document.getElementById('weatherToday')+=
+
 };
 
 function getForecast5(lat, lon) {
