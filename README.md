@@ -5,7 +5,7 @@ A demonstration of the use of external API--in this case, https://openweathermap
 
 
 ## Preview
-![img](./assets/firstpreview.jpg)
+![img](./assets/secondstagescreenshot.jpg)
 
 
 ## Deployment
